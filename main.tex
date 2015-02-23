@@ -1,0 +1,70 @@
+\documentclass{uofsthesis-cs}
+
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[authoryear]{natbib}
+\usepackage{setspace}
+\usepackage{mathtools}
+\usepackage{aas_macros}
+
+\title{Something About ALI}
+
+\author{Brenden J Elash}
+
+% Use \MSc or \PhD here
+\degree{\PhD}
+
+% Should be month/year, e.g. July 2004
+\convocationdate{September/2015}
+
+\department{Physics and Engineering Physics}
+\academicunit{Department}
+
+\ptuaddress{Head of the Department of Physics and Engineering Physics\\
+163 Physics Building\\
+116 Science Place\\
+University of Saskatchewan\\
+Saskatoon, Saskatchewan\\
+Canada\\
+S7N 5E2
+}
+
+\abstract{
+This is the abstract of my thesis.
+}
+
+\acknowledgements{
+Acknowledgements go here.  Typically you would at least thank your supervisor.
+}
+
+\dedication{This is the thesis dedication (optional)}
+
+% LIST OF ABBREVIATIONS - Sample
+% If you don't want a list of abbreviations, comment the following 4 lines.
+\loa{\abbrev{ALI}{Atmospheric Limb Imager}
+\abbrev{AOTF}{Acousto-Optical Tunable Filter}
+\abbrev{OMPS}{Ozone Mapping and Profiler Suite}
+\abbrev{OSIRIS}{Optical Spectrograph and Infra-Red Imaging System}
+\abbrev{UTLS}{Upper Troposphere and Lower Stratosphere
+}
+
+
+\begin{document}
+
+\maketitle
+
+\frontmatter
+
+\input{./Chapter1/Introduction.tex}
+\input{./Chapter2/Background.tex}
+\input{./Chapter3/ALIDesignAndTesting.tex}
+\input{./Chapter4/PolarizationStudy.tex}
+\input{./Chapter5/StratosphericBalloonFlightAndDataAnalysis.tex}
+\input{./Chapter6/FutureWorkandConclusions.tex}
+
+\uofsbibliography{880Paper}
+
+
+\end{document} 
