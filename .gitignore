@@ -1,0 +1,11 @@
+main.pdf
+main.aux
+*.bbl
+main.blg
+*.log
+main.synctex
+*.bak
+*.lof
+*.lot
+main.out
+*.toc
