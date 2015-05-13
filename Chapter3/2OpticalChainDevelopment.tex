@@ -9,7 +9,7 @@ The system needs to be able to preform high resolution images of the atmosphere 
 
 The first system in consideration is a telecentric system. In order to describe the concept behind the telecentric system a basic ray tracing image is shown in \autoref{fig:3.2:rayTracing} where the three paraxial rays are drawn using a simple biconvex lens. %All the rays start from the top of the object and each travel in a certain path. The first ray called the parallel ray travel along the optical axis until it hits the refractive surface then passes through the focal point on the other side of the lens denoted by $f$. The second ray is called the focal ray and it passes through the object (left) side focal point and then travels parallel to the optical axis once it has interacted with the lens. And third the chief ray travels straight thought the center of the lens. These three rays all intersect on the image (right) side and show the location of the formed image.
 
-\begin{figure}[h!]
+\begin{figure}
     \includegraphics[width=1.0\textwidth]{./Images/3-2-RayTracing.pdf}
     \caption[Telecentric Ray Tracing Diagram]{A standard paraxial ray tracing diagram. The aperture is located to make the system telecentric in the image plane. $f$ is the focal length of the lens.}
     \label{fig:3.2:rayTracing}
@@ -21,7 +21,7 @@ To make this ray tracing system telecentric in image space an aperture is added 
 
 A telecentric layout in both image and object space has an advantage for the imaging quality of the AOTF system shown in \autoref{fig:3.2:telecentricRayTracing}. Since the wavelength filtered by the AOTF is dependant on the incident angle, and from \autoref{fig:3.2:telecentricRayTracing}, all the lines of sight enter with approximately the same angular spread so the filtered image has consistent wavelength. However, two problems are added to the system. First, a blurring effect is added to the final image dependant on wavelength, which will be discussed below in greater detail. As well, this method is sensitive to any surface defects of the crystal since the light enters the crystal in focused bundles.
 
-\begin{figure}[h!]
+\begin{figure}
     \includegraphics[width=1.0\textwidth]{./Images/3-2-TelecentricRayTracing.pdf}
     \caption[ALI Telecentric Design Prototype]{Ray Tracing diagram simulation of the telecentric lens system preformed using CODE V. The elements in the system are the following: (1) Optical Stop and telecentric aperture. (2) 100~mm focal length plano-convex lens. (3) Brimrose AOTF characterized in \autoref{sec:3.1:AOTFCalibration}. (4) 100~mm focal length plano-convex lens. (5) Telecentric Aperture. (6) 75.6~mm focal length plano-convex lens. (7) Imaging plane. It should be noted that the x and y scales are not the same in this image. Also, in the lab a polarizer is added in front and behind the AOTF as well as prisms after the AOTF.}
     \label{fig:3.2:telecentricRayTracing}
@@ -31,7 +31,7 @@ As a part of this work a test optical system was designed to be telecentric in b
 
 %However, the aperture of the AOTF limits the system to 5.7 degrees so assuming a 35 km balloon altitude the top kilometer will not be captured by the CCD. In reality this is a negligible loss since the line of sight looking out straight, directly tangential to the earth below, is viewing the least amount of atmosphere compared to any other line of sight, and as such, is not as information dense as lower lines of sight.
 
-\begin{table}[h!]
+\begin{table}
     \begin{center}
     \begin{tabular}{|l|c|}
     \hline
@@ -57,7 +57,7 @@ As a part of this work a test optical system was designed to be telecentric in b
 
 The light is focused on a 16-bit digital QSI 616 CCD with a mechanical shutter that allows an integration time between 0.01~seconds to 240~minutes. The CCD chip itself is a Kodak KAF-1603ME with micro lenses to improve the quantum efficiently of the device and its spectral characteristics can be seen in \autoref{fig:3.2:QSIQuantumEfficientcy}.
 
-\begin{figure}[h!]
+\begin{figure}
     \begin{center}
     \includegraphics[width=0.5\textwidth]{./Images/3-2-QsiCcdQe.jpg}
     \caption[QSI 616 Camera Quantum Efficiency]{Quantum efficiency of the Kodak KAF-1603ME contained within the QSI CCD camera is represented by blue curve. Quantum efficiency provided by QSI Scientific. }
@@ -76,7 +76,7 @@ However, despite its benefits there are a few drawbacks to consider in the desig
 \end{equation}
 where $n(\lambda)$ is the index of refraction with a wavelength dependance and $t$ is the thickness of the crystal. The AOTF crystal causes the optical path in air to be lengthened by $d$, as can be seen in \autoref{fig:3.2:opticalPathDisplacement}. In order to compensate, the length $d$ must be added to the path to account to the discrepancy, but this can only be accounted for a specific wavelength and thus image defocusing will occur at the image plane for other wavelengths. The severity of this problem can be seen in \autoref{fig:3.2:telecentricSpotSize} from a Code V simulation of the spot size of the optical system . In this simulation a grid of rays is passed through the system for each field of view and using ray tracing the final locations on the image plane are determined. The black circles represent the Airy disks, which are the minimum possible spot size possible limited by diffraction for each wavelength of light. The above analysis was preformed when the system was focused at 800~nm. The spot sizes at 800~nm are on the order of 24~\si{\micro\meter} at the center, which is diffraction limited, and 94~\si{\micro\meter} at the edge of the field of view. However, for the same optical layout the 600\,nm spot sizes are all greater than 160~\si{\micro\meter} which will cause an noticeable blurring in the recorded image.
 
-\begin{figure}[h!]
+\begin{figure}
     \begin{center}
     \includegraphics[width=1.0\textwidth]{./Images/3-2-OpticalPathDisplacement.pdf}
     \caption[Telecentric Optical Path Displacement]{The effect on the optical path of converging light bundles as they pass through an material of index of refraction $n(\lambda)$. When the index of refraction strongly depends on wavelength, as in the AOTF, the optical path length can expense great changes that will alter the focal point of the system.}
@@ -84,7 +84,7 @@ where $n(\lambda)$ is the index of refraction with a wavelength dependance and $
     \end{center}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}
     \begin{center}
     \includegraphics[width=1.0\textwidth]{./Images/3-2-TelecentricSpotSize.pdf}
     \caption[Telecentric Prototype Spot Sizes]{Code V simulation of the spot size for the telecentric system at focus at 800~nm. The spots are shown for 0.0, 1.5 and 2.6 degree fields of view at 600~nm (blue) and 800~nm (green). The full spot sizes for the 600~nm spots are 0.16, 0.22, and 0.25~mm for 0.0, 1.5, and 2.6\si{\degree} fields respectively, with the corresponding 800~nm spot sizes being 0.024, 0.053, 0.094~mm. The black circles represent the Airy disk for each specific wavelength and field of view.}
@@ -94,7 +94,7 @@ where $n(\lambda)$ is the index of refraction with a wavelength dependance and $
 
 The system was bread boarded in the lab and used to image EIA 1956 standard resolution chart. The results of the test can be seen in \autoref{fig:3.2:telecentricTestImages}. The experimental set up is similar to the system in \autoref{fig:3.2:telecentricRayTracing} except for two fundamental differences. The Code V software can preform analysis for only one polarization and neglects the bend in the optical axis caused by the AOTF. However, these two issues can be dealt with sufficiently in the lab. The polarization issue is removed by added a polarizer before and after the AOTF. The light that is actively diffracted through the AOTF is the light that enters the AOTF crystal on the extraordinary polarization. The polarizer before the device stops the ordinary polarization from entering the device. The second polarizer on the other side of the device is used to only let the diffracted light through and removes the non-diffracted extraordinary polarization light. The interaction with the crystal causes the diffracted beam to be rotated by 90\si{\degree}, so the polarizers are rotated by 90 degrees with respect to each other. The second issue to be handled is that the AOTF bends the optical path by 2.7\si{\degree}. Two prisms were added after the ATOF to straighten out the optical path; the optical path past the prisms is parallel to the original optical path and is offset by approximately a millimeter and clips a part of the field of the view. The optical layout around the AOTF is similar to the optics around the AOTF in the characterization test shown in \autoref{fig:3.1:testExperimentalSetup}. The resolution chart was positioned so that the loss of the field of the view due to the prism compensation was accounted by a shift in the vertical location of the resolution chart since it only fills the whole field of view in the horizontal direction.
 
-\begin{figure}[h!]
+\begin{figure}
     \begin{center}
     \includegraphics[width=1.0\textwidth]{./Images/3-2-TelecentricTestImages.pdf}
     \caption[Telecentric Prototype Laboratory Test Images]{The top left is the original test image used for the experiment. The top right, bottom left, and bottom right are the images recorded through the telecentric system at 650, 750, and 850~nm. The system is focused at 800~nm.}
@@ -117,7 +117,7 @@ The second optical system in consideration is a telescopic optical system consis
 
 %where $M_{\theta}$ is the optical power or the angular magnification, and $f_{o}$ and $f_{e}$ are the focal lengths of the objective and eyepiece respectively.
 
-\begin{figure}[h!]
+\begin{figure}
     \includegraphics[width=1.0\textwidth]{./Images/3-2-TelescopicRayTracing.pdf}
     \caption[ALI Telescopic Design Prototype]{Ray Tracing diagram of the telescopic lens system simulated by Code V. The elements in the system are the following: (1) 100~mm focal length plano-convex lens. (2) Location where shutter will be located to limit stray light (3) 100~mm focal length plano-convex lens. (4) Brimrose AOTF characterized in \autoref{sec:3.1:AOTFCalibration}. (5) 75.6~mm focal length plano-convex lens. (6) Imaging plane. It should be noted that the x and y scales are not the same in this image. Also, in the lab a polarizer is added in front and behind the AOTF as well as prisms behind the AOTF.}
     \label{fig:3.2:telescopicRayTracing}
@@ -127,7 +127,7 @@ This system was designed with as many similar components as possible to the tele
 
 %Therefore, this system has perspective in the final image, meaning objects further away look smaller in the final image.
 
-\begin{table}[h!]
+\begin{table}
     \begin{center}
     \begin{tabular}{|l|c|}
     \hline
@@ -158,7 +158,7 @@ The AOTF now has collimated light passing though the device, unlike the telecent
 \end{equation}
 where $\delta$ is the displacement from the original path; causing a slight magnification change based on the wavelength of the light being diffracted, but this magnification is a negligible change overall, the effect can be seen in \autoref{fig:3.2:planeParallelDiplacement}. The last change to the system is the focusing power it possesses, as can be seen in the spot diagrams in \autoref{fig:3.2:telescopicSpotSize}. The change in spot size due to wavelength is primarily due to the chromatic aberrations of the optical lens. One option is to replace the lenses with mirrors in the flight version which will eliminate the chromatic abberation issue. Second, the system is diffraction limited for 600\,nm for all lines of sight and at 800\,nm at 3.0 degrees. Also the difference in location of the spot sizes is caused by the magnification effect discussed above.
 
-\begin{figure}[h!]
+\begin{figure}
     \begin{center}
     \includegraphics[width=1.0\textwidth]{./Images/3-2-PlaneParallelDisplacement.pdf}
     \caption[Telescoptic Plane Parallel Displacement]{Vertical displacement of a collimated bundle of light cause by a material of index of refraction $n$.}
@@ -166,7 +166,7 @@ where $\delta$ is the displacement from the original path; causing a slight magn
     \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}
     \begin{center}
     \includegraphics[width=0.70\textwidth]{./Images/3-2-TelescopicSpotSize.pdf}
     \caption[Telescopic Prototype Spot Sizes]{Code V simulation of the spot size for the telescopic system. The spots are shown for 0.0, 1.5 and 3.0\si{\degree} fields of view at 600~nm (blue) and 800~nm (green). The full spot sizes for the 600~nm spots are 0.004, 0.045, and 0.122~mm for 0.0, 1.5, and 3.0\si{\degree} fields respectively, with the corresponding 800~nm spot sizes being 0.096, 0.081, 0.047~mm. The black circles represent the Airy disk for each specific wavelength and field of view.}
@@ -176,7 +176,7 @@ where $\delta$ is the displacement from the original path; causing a slight magn
 
 An experimental resolution test was set up similar to the one described in \autoref{tab:3.2:telecenticSystemParameters} with two polarizers and prisms added to the optical chain. The QSI CCD was also used with the same 30 second integration time. The results of this test can be seen in \autoref{fig:3.2:telescopicTestImages}. Once again the image at 750~nm is the sharpest of the three but the center lines of the EIA 1956 test chart are distinguishable at all of the wavelengths. The blurring of the 650~nm image is caused by the chromatic abberations of the lens and the prisms and will removed if mirrors are used in the final design. Also, the magnification issue discussed above is relatively insignificant in the test images and the small changes can be accounted for in the calibration of the final instrument. Lastly, the low NIR levels of the light source combined with the poor quantum efficiency of the CCD camera causes the 850~nm image to also have a low signal to noise ratio. This issue will have to be dealt with in the final design, which as mentioned may include an InGaAs sensor array. A final note to be made is the gradient found in the brightness of these images. This is currently thought to be a vignetting problem due to an optical misalignment and is under investigation.
 
-\begin{figure}[h!]
+\begin{figure}
     \begin{center}
     \includegraphics[width=1.0\textwidth]{./Images/3-2-TelescopicTestImages.pdf}
     \caption[Telescoptic Prototype Laboratory Test Images]{The top left is the original test image used for the experiment. The top right, bottom left, and bottom right are the images recorded through the telescopic system at 650, 750, and 850~nm. The system is focused at 800\,nm.}
@@ -190,11 +190,11 @@ A final selection for the optical design of ALI will be presented in this sectio
 
 The telescopic system offers the ability of having an image plane location that is not dependant of the wavelength being imaged leading to a system that would either require the system to have mechanical pieces to move the imaging plane or additional optical components to counter act the change in the optical path. Using mechanic components to move the camera would be an addition failure point and would have to be well calibrated across the whole wavelength range. For the other alternative a custom lens or prism would need to be created in order to counteract the defocusing effect of the AOTF which would cause further reflections within the system increasing the possibility of stray light hitting the CCD camera and well at decreasing the signal through put of the system. This design also allow for a greater focus on spacial resolution that could be achieved with a telescopic system with is necessary in order to be able to image the fine structure of aerosol concentration on the order of 100s of metres.
 
-Another minor consideration for the system is the finer FWHM for each line of sight that passes through the ATOF and is imaged on the CCD giving more fine spectral resolution however the draw back is that the central wavelength of each line of sight is dependant upon the angle of incident. A wavelength gradient appears in the final image in the the longest central wavelength occurs in the center of the image and radiates outward towards shorter wavelengths as apparent in \autoref{eqn:3.1:AOTFWavelengthDependance} an have a wavelength gradient of approximately 7~nm at 650~nm central wavelength and 11~nm at 950~nm, however for a space based instrument with a relatively smaller field of view the gradient could be reduced to as small as 2~nm across the whole image with, at worse, the same size as the FWHM of the AOTF. The effect would be a significant problem for instruments measuring trace gasses absorbtion lines, for example water vapour, but aerosol is a broadband enhancing feature in which its effect are visible in atmospheric measurement from 400~nm well into the IR. The wavelength dependant magnification mentioned earlier only amounts to being a change of a approximately 4 pixels in both direction from the inherent magnification from 650~nm to 950~nm overall this change is considered negligible for the purpose of ali's mission which will be discussed in \autoref{sec??}.
+Another minor consideration for the system is the finer FWHM for each line of sight that passes through the ATOF and is imaged on the CCD giving more fine spectral resolution however the draw back is that the central wavelength of each line of sight is dependant upon the angle of incident. A wavelength gradient appears in the final image in the the longest central wavelength occurs in the center of the image and radiates outward towards shorter wavelengths as apparent in \autoref{eqn:3.1:AOTFWavelengthDependance} an have a wavelength gradient of approximately 7~nm at 650~nm central wavelength and 11~nm at 950~nm, however for a space based instrument with a relatively smaller field of view the gradient could be reduced to as small as 2~nm across the whole image with, at worse, the same size as the FWHM of the AOTF. The effect would be a significant problem for instruments measuring trace gasses absorbtion lines, for example water vapour, but aerosol is a broadband enhancing feature in which its effect are visible in atmospheric measurement from 400~nm well into the IR. The wavelength dependant magnification mentioned earlier only amounts to being a change of a approximately 4 pixels in both direction from the inherent magnification from 650~nm to 950~nm overall this change is considered negligible for the purpose of ALI's mission which will be discussed in \autoref{sec:5.2:CalibratedRadiances}.
 
 The final optical specification for ALI can be found in \autoref{tab:3.2:ALISystemParameters}. A noticeable change from the telescopic prototype is the decreased f/\# and the front end demagnification and the back end magnification which have all were all related to increasing the signal entering ALI. The lower F/\# increases the amount of light that can enter the optical chain allowing for shorter exposure time that were needed in order to get high quality data from the Timmins, Ontario campaign. The increase F/\# required larger optics and has as such a larger beam of light to pass into the AOTF, which unfortunately was not possible due to the AOTF having a fixed aperture of 10 by 10~mm. To rectify this problem a found end demagnification was added to reduce the size of the incoming light beam entering he AOTF down to a size that could pass through its optical aperture and remagnify it back to its original size with the back end optics before passing into the imaging system. Lastly, the specifications for the wavelength range was decreased from 600-1200~nm down to 650-950~nm, which was done for two different reason at each end of the spectrum. At the 600~nm side of the range the effeminacy of the optical components antireflection coasting started to fall and the AOTF itself diffraction efficiency fall off quickly at wavelengths lowers than 630~nm. These loss in efficiencies would require large integration times during flight that would not have been practical so they were removed from the instruments range, and even 650~nm has exposure time on the longer side of reasonable. At the long wavelengths the system was originally have a beam splitter to have the image focused on an InGa array for the NIR and a CCD for the visible region which was to be implemented when a folded mirror optical system was to be implemented, but the launch date for ALI was pushed up by one year and no longer gave the time required to design the folded optical system so a linear lenses non-beam spitted system was to be used in stead. The inherent nature of the change of date made it a requirement to reduce upper limit of ALI's wavelength range to 950~nm instead of the originally proposed 1200~nm.
 
-\begin{table}[!ht]
+\begin{table}
     \begin{center}
     \begin{tabular}{|l|c|}
       \hline

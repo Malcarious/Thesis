@@ -10,7 +10,7 @@ Consideration for thermal expansion and contraction of the opto-mechanical compo
 
 The next consideration was opto-mechanical housing design after a choice of material was style of the case. Commonly space based instrumentation uses a solid piece of material and is machined into a shape required to be able to house all the optical components. However, this method is relatively expensive and is generally used for finalized space instrumentation and not for design concept prototypes. These types of cases also have a long lead-time for the production and manufacturing component which would have been pressing our timeline for the launch date. The other option was to design an optical rail system primarily from preexisting components from known optical manufacturers, which would allow the flexibility to be able to make slight modifications to the design without having to commissioning a new one-piece case allowing for inexpensive alternation to the ALI optical chain without complete reconstruction. However, the draw back arise since with only using off-the-shelf components alignment and and resolution of the system may be harder to maintain. Considering the prototype nature of the project the choice was made to go with off-the-shelf opto-mechanical and structural pieces for ALI with the limitation in possible alignment and resolution being classified as an acceptable trade-off.
 
-\begin{figure}[h!]
+\begin{figure}
     \begin{center}
     \includegraphics[width=1.0\textwidth]{./Images/3-3-OptoMechanicalSolidWorksLayoutProfile.pdf}
     \caption[ALI's Opto-mechanical Layout (Side)]{The final optical layout of ALI's optical chain from the profile perspective with the components being the following: (1) 150~mm plano-convex lens with 25.4~mm diameter. (2) Slit plate. (3) 100~mm plano-convex lens with 50.8~mm diameter. (4) Optical rail system. (5) Vertical linear polarizer. (6) Brimrose AOTF. (7) Rotation Stage. (8) Horizontal linear polarizer. (9) 50~mm bi-convex lens with 25.4~mm diameter. (10) QSI CCD camera. (11) Optical rail.}
@@ -18,7 +18,7 @@ The next consideration was opto-mechanical housing design after a choice of mate
     \end{center}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}
     \begin{center}
     \includegraphics[width=1.0\textwidth]{./Images/3-3-OptoMechanicalSolidWorksLayoutTop.pdf}
     \caption[ALI's Opto-mechanical Layout (Top)]{The final optical layout of ALI's optical chain from the top perspective with the numbered components being the same as \autoref{fig:3.3:optoMechanicDesignSide}.}
@@ -32,7 +32,7 @@ During the testing of the optical system two prisms were used account for the be
 
 The optical components were purchases to the the specification required from the design with a few addition modifications. First, the lenses were ordered with an antireflection coating in order to increase the systems efficacy, a B-type antireflection coating was order for the lenses from ThorLabs with reduces reflection from the lens surface down to an average of less than 0.50\% from 650 to 1050~nm instead of an 8\% loss per surface from an uncoated lenses. The lenses also had a tolerance of a a 1\% error in the focal length and made form grade A N-BK7 glass. The linear polarizer used, elements 5 and 8, were purchased and a selection of linear polarizer were considered. However the wavelength range of ALI made standard polarizer difficult to find which limited the possible choices. A nanoparticle linear film polarizers was eventually decided upon even though it was one of the more expensive polarizer options but gave an extinction ratio of since it was greater than 100,000:1 for 650 to 1200~nm completely covering ALI operating range. The extinction ratio is defined by the ratio between the maximum transmission when the polarizers axis is aligned with the signal to the minimum transmission after the polarizer has been rotated by 90\si{\degree}.
 
-\begin{figure}[h!]
+\begin{figure}
         \includegraphics[width=1.0\textwidth]{./Images/3-3-CustomMountingPieces.pdf}
         \caption[ALI Custom Mounting Hardware]{The custom mounting hardware design to mount the AOTF and QSI CCD camera into ALI's opto-mechanical design. Left: Custom AOTF mounting hardware. Right: The five piece QSI CCD camera mounting hardware.}
         \label{fig:3.3:customOptoMechanicalMount}
@@ -53,7 +53,7 @@ The baffle system is designed such that all light entering the system will hit a
 
 The first point of the discussion was a height versus width discussion. In a baffle system the larger the baffle is by shear volume the better the baffle can be designed to reduce stray light. However there is a limited amount of space to build the ALI instrument and the baffle must share space with optics, electronics and power systems; as such a size had to be selected. A height and width of 83.32~mm was chosen since this was the size of the optical rails used to house the optical chain and did not want the instrument to have to be any taller than nessissary. This left the length of the baffle to be determined. The length is also limited by the space for ALI as well as the field of view and entrance aperture size, and its location. One always needs to make sure the the optical stop is the location that limits the amount of light that is entering the system. If this is artificially changed with the baffle design it will affect the performance of the instrument itself. If the optical stop is moves further from the optical system one keeps the same field of view but limits the amount of light that enters the system. Thus changing the overall F/\# of the system and either increases the exposure times or decreases the SNR. The other case is if the optical stop is moved closer to the optical system, which causes the opposite problem which is more light enters the system than the system was designed for causing an excess of stray light and rendering the baffle not as effect as could be designed.
 
-\begin{figure}[h!]
+\begin{figure}
         \includegraphics[width=1.0\textwidth]{./Images/3-3-BaffleAssembly.png}
         \caption[ALI Baffle Cross Section]{A cross-section view of the ALI baffle system. All dimensions on the drawing are
         in millimeters and the sloped black lines show the 6 degree field of view.}
@@ -64,7 +64,7 @@ This information leaves us with three kinds of fundamental locations to put the 
 
 Although the overall choice between these three do not have a great effect on the efficacy of the baffle itself it has an effect on the shape on the baffle system as well as the number of veins required. The greatest difference is the change in the optical system required, the further away the optical stop is from the front lens the larger the optical components need to be in order to accept all of the light, which makes the system heavier, larger and more expensive to build. In ALI the optical stop was chosen with the previous consideration in mind and is close to the first lens to make the system has small and compact as possible as well has to reduce the number of baffles that needed to be built for the system. This would allow a more cost effective system while still producing a high quality baffle to improve the system's effectiveness.
 
-\begin{figure}[h!]
+\begin{figure}
         \centering
         \includegraphics[width=0.6\textwidth]{./Images/3-3-AliCompleteDesign.pdf}
         \caption[ALI Complete Optical Design (Isometric)]{An isometric of the complete ALI system with the baffle and field of view slant. Light tight case absent from diagram.}
@@ -82,7 +82,7 @@ During the stratospheric balloon flight software will be needed in order to cont
 
 The ground based software contains the single module that is responsible for establishing communication with ALI, handling any loss of information during data transfer, decoding the data from the ALI flight software, as well as upload commands to the ALI instrument. The ALI software is more complicated with different modules to handle the different aspects of the hardware and control systems. The flight software contains five different modules to handle different function of the system. The five modules are the main modules, communication module, diagnostics module, science module, and local storage represented in \autoref{fig:3.3:softwareFlowDiagram} by blue, green, orange, purple, and yellow respectively.
 
-\begin{figure}[h!]
+\begin{figure}
         \centering
         \includegraphics[width=1.0\textwidth]{./Images/3-3-SoftwareFlowDiagram.pdf}
         \caption[ALI Software Flow Diagram]{A complete flow diagram showing interaction between all the of ALI software modules on the on board ALI flight computer.}
@@ -91,7 +91,7 @@ The ground based software contains the single module that is responsible for est
 
 The main module contain a script with initiates the ALI flight program during startup and can be restarted from the ground upon a software failure. Once the main program has been started by the script the thread manager initializes all of the individual threads for the other processes and then wait for a terminate command to close the ALI flight software.
 
-The first module started by the thread manager is the communications module. This module operates the telemetry for the for the entire flight program. It sends and receives all packets that are outgoing or incoming from the ground program. All other modules send information to the telemetry for encoding into packets and transferring to the ground and all uploaded command are decoded and sent to the command decoder. All incoming and telemetry is stored locally for review upon completion of the flight. The command decoder takes all the incoming decoded commands from the ground and parses the information to send to the proper modules. A series of the complete command for ALI can be found in \autoref{??}.
+The first module started by the thread manager is the communications module. This module operates the telemetry for the for the entire flight program. It sends and receives all packets that are outgoing or incoming from the ground program. All other modules send information to the telemetry for encoding into packets and transferring to the ground and all uploaded command are decoded and sent to the command decoder. All incoming and telemetry is stored locally for review upon completion of the flight. The command decoder takes all the incoming decoded commands from the ground and parses the information to send to the proper modules. A series of the complete command for ALI can be found in \autoref{sec:B.1:SoftwareCommands}.
 
 The diagnostic module manages the Global Positioning System (GPS), Pulse Per Second (PPS), and the temperature sensors. The GPS monitor recorded the current location and height of the instrument. The PPS was a signal that was sent out from the gondola's SIREN module (a device used for the gondola's communications and telemetry system) every second that would be a constant signal between all device on board to be correlate each systems data to each other. Lastly, the temperature sensor module read all of the temperature sensors from a one line temperature sensing device, where all temperature sensors are on a single line and are connected with though a simple RC323 connection. Temperature sensors were located in the power box, electronics box, CCD, RF driver, front optical element, and exterior of the baffle to achieve a complete temperature profile of the instrument. All information gathered by the diagnostic module is sent to the telemetry system so the ground user can determine the state of the system and make any required changes. The data is also stored to the local storage onboard ALI for use when the ALI is recovered after the flight. Also the RF driver temperature is sent to the science module for a safety check to not allows the RF driver to become too hot and become damaged.
 
@@ -107,7 +107,7 @@ A test for ALI was performed to determine exposure times for the stratospheric b
 
 In order to address this issue a radiative transfer model is needed a model has been developed at the University of Saskatchewan over the past 15 years. Using the unpolarized SASKTRAN radiative transfer model, discussed in detail in \autoref{??}, ALI was placed at the ground with a 90\si{\degree} and a zenith angle of 60\si{\degree} just like the roof trial. A second run was preformed using the parameters for the for the general parameters of the proposed balloon flight. Once both radiance profiles were determined a ratio of the balloon flight radiances to the ground radiance were taken. These ratio are the relative intensity changes for each wavelength between the two altitudes, so multiplying the determined exposure times from the roof test by the ratios will give the exposure times for the gondola geometry.
 
-\begin{figure}[h!]
+\begin{figure}
         \centering
         \includegraphics[width=1.0\textwidth]{./Images/3-3-ExposureTimeDetermination.pdf}
         \caption[Flight Exposure Time Determination]{TODO: Write Description}

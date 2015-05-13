@@ -1,0 +1,210 @@
+\chapter{ALI Software Commands}
+
+\section{List of Commands}
+\label{sec:B.1:SoftwareCommands}
+
+Following is a list of the commands that can be used in the ALI software for operational control during flight through the ground based communication program. A complete list will be presented then a description of each function will follow and are all case sensitive.
+
+\begin{enumerate}
+    \item \texttt{EnableScience}
+    \item \texttt{DisableScience}
+    \item \texttt{EnableRF}
+    \item \texttt{DisableRF}
+    \item \texttt{EnableAutoSendStats}
+    \item \texttt{DisableAutoSendStats}
+    \item \texttt{SetScienceMode}
+    \item \texttt{ReloadConfig}
+    \item \texttt{LdCusCnf}
+    \item \texttt{LdCusExp}
+    \item \texttt{GetFile}
+    \item \texttt{EndCurrentScienceCycle}
+    \item \texttt{SetExposureScaleFactor}
+    \item \texttt{UpdateExposureTimeCurve}
+    \item \texttt{EnableCheckRfTemps}
+    \item \texttt{DisableCheckRfTemps}
+    \item \texttt{ResetHousekeeping}
+    \item \texttt{DumpConfig}
+    \item \texttt{SetBitsPerSecond}
+    \item \texttt{EnableAutomation}
+    \item \texttt{DisableAutomation}
+    \item \texttt{SetAutomationTimeout}
+    \item \texttt{EnableGps}
+    \item \texttt{DisableGps}
+    \item \texttt{EnablePulse}
+    \item \texttt{DisablePulse}
+\end{enumerate}
+
+\subsection{Command:EnableScience}
+
+Full Command: \texttt{EnableScience}\\
+
+This command enables science data acquisition and enables the RF driver. If the current mode is invalid the systems reports the error to the user. By default science mode data acquisition is disabled and must be enabled.
+
+\subsection{Command:DisableScience}
+
+Full Command: \texttt{DisableScience}\\
+
+This command disables science data acquisition at the end of the current science mode cycle. This mode does not disable the RF driver. Current mode will not end if the RF driver is currently disabled as disabling the RF driver only pauses the cycle. By default science data acquisition is disabled.
+
+\subsection{Command:EnableRF}
+
+Full Command: \texttt{EnableRF}\\
+
+Turns on the RF driver by enabling the relay that controls the power to the device. Heavy power draw and by default is disabled.
+
+\subsection{Command:DisableRF}
+
+Full Command: \texttt{DisbaleRF}\\
+
+Disable the RF driver during science mode accusation. This only pauses the science acquisition cycle mode and will continue once the driver is enabled again. By default the RF driver is disabled due to the high power draw.
+
+\subsection{Command:EnableAutoSendStats}
+
+Full Command: \texttt{EnableAutoSendStats}
+
+Enables the sending of statistics for each image taken and include 5 vertical columns of measured data from the image, what percentage of the CCD well is full as well as exposure time length, time taken, location, RF power, and wavelength. By default enabled.
+
+\subsection{Command:DisableAutoSendStats}
+
+Full Command: \texttt{DisableAutoSendStats}\\
+
+Disables the sending of statistics for each image taken. By default enabled.
+
+\subsection{Command:SetScienceMode}
+
+Full Command: \texttt{SetScienceMode scienceMode,exposureMode}
+
+Parameter: \texttt{scienceMode} is a numerical value of the science mode to be run.
+
+Parameter: \texttt{exposureMode} is a numerical value of the science mode to be run.\\
+
+Allows the user to change science mode and exposure modes that ALI is preforming. The science mode is a predetermined cycle of images to perform a specific scientific goal and a table containing all of the modes is listed \autoref{tab:B.1:ScienceModes} and a complete description of each cycle is presenting in \autoref{sec:B.2:ScienceModes}. The exposure mode is a predetermined exposure time lnegth to be used for each wavelength and a table containing all of the modes is listed \autoref{tab:B.1:ExposureModes} and a complete description of each mode is presenting in \autoref{sec:B.3:ExposureModes}. The next mode will be loaded once the current mode is complete. By default the program is set in Invalid Mode,Invalid Mode.
+
+\begin{table}
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    Mode Number & Mode Name \\
+    \hline
+    0 & Invalid Mode \\
+    \hline
+    1 & Dark Mode \\
+    \hline
+    2 & Aerosol Mode \\
+    \hline
+    3 & H$_{2}$O Mode \\
+    \hline
+    4 & O$_{2}$ Mode \\
+    \hline
+    5 & Custom Mode \\
+    \hline
+    6 & Aerosol Constant Exposure Time Mode \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \caption[ALI Operational Science Modes]{ALI operational science modes.}
+    \label{tab:B.1:ScienceModes}
+\end{table}
+
+
+\begin{table}
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    Mode Number & Mode Name \\
+    \hline
+    0 & Invalid Mode \\
+    \hline
+    1 & Calibrated Exposure Mode \\
+    \hline
+    2 & Automatic Exposure Mode (\textit{Not Implemented}) \\
+    \hline
+    3 & Custom Exposure Mode \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \caption[ALI Operational Exposure Time Modes]{ALI operational exposure time modes.}
+    \label{tab:B.1:ExposureModes}
+\end{table}
+
+\subsection{Command:ReloadConfig}
+
+Upon next science cycle reloads the current configuration files.
+
+\subsection{Command:LdCusCnf}
+
+Uploads values for a custom science mode file. The first value is the number of exposures followed by a number of pairs that equal the number of exposures with the pair set of wavelength in nanometers and RF Power. No check on the command, verify that the command is correct!
+
+\subsection{Command:LdCusExp}
+
+Uploads values for a custom exposure file the first value is the number of exposures time followed by a series of time in seconds. If custom exposure time is used it must match the number of exposure of images in the current science mode.  No check on the command, verify that the command is correct!
+
+\subsection{Command:GetFile}
+
+Gets the requested image file from ALI-OCELOT if it exists. The name of the file has the format listed above. The filename is the full path location.
+
+\subsection{Command:EndCurrentScienceCycle}
+
+Ends the current science operation mode no matter where in the session the mode currently was.
+
+\subsection{Command:SetExposureScaleFactor}
+
+Sets a scaling factor for the exposure times. Value must be greater than zero. Default is 1.0.
+
+\subsection{Command:UpdateExposureTimeCurve}
+
+Changed the values for the calculated exposure curves in seconds. Only verifies at least the required number of wavelengths have been read and second are in between 0.05 and 60 seconds. Time are in double format and separated by a comma. The Table below contains the default values.   No check on the command, verify that the command is correct!
+
+\subsection{Command:EnableCheckRfTemps}
+
+Enables the check for the RF driver so it does not get too hot or cold. Cold temp is 0 and hot is 50.
+
+\subsection{Command:DisableCheckRfTemps}
+
+Enables the check for the RF driver so it does not get too hot or cold. NOT RECOMMENDED UNLESS A PROBLEM OCCURS!
+
+\subsection{Command:ResetHousekeeping}
+
+Resets the housekeeping module to reacquire the voltage and temperature sensors.
+
+\subsection{Command:DumpConfig}
+
+Prints the current configuration loaded into the science module.
+
+\subsection{Command:SetBitsPerSecond}
+
+Changes the bitrate limit for the balloon platform. Minimum value is 32000 bits per second.
+
+\subsection{Command:EnableAutomation}
+
+Enables the automatic timeout in case communication is lost and never restored.
+
+\subsection{Command:DisableAutomation}
+
+Stopped the thread that automatically starts ALI in an AERSOL\textunderscore MODE science operation. THIS NEEDS TO BE STOPED if user control is to be used as it will change the science mode after the timeout has occurred!
+
+\subsection{Command:SetAutomationTimeout}
+
+Changes the default timeout time to the time given in minutes. Default is 90, Minimum is 5 and maximum 240 minutes.
+
+\subsection{Command:EnableGps}
+
+Starts the GPS thread if it is not already started.
+
+\subsection{Command:DisableGps}
+
+Stops the GPS thread if it is not currently running.
+
+\subsection{Command:EnablePulse}
+
+Starts the PPS thread if it is not already started.
+
+\subsection{Command:DisablePulse}
+
+Stops the PPS thread if it is not currently running.
+
+\section{List of Science Modes}
+\label{sec:B.2:ScienceModes}
+
+\section{List of Exposure Modes}
+\label{sec:B.3:ExposureModes}
