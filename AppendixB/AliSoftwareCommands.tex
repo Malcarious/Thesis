@@ -129,82 +129,140 @@ Allows the user to change science mode and exposure modes that ALI is preforming
 
 \subsection{Command:ReloadConfig}
 
-Upon next science cycle reloads the current configuration files.
+Full Command: \texttt{ReloadConfig}\\
+
+Upon completion of the current science cycle the current science mode cycle will be reload from the configuration files.
 
 \subsection{Command:LdCusCnf}
 
-Uploads values for a custom science mode file. The first value is the number of exposures followed by a number of pairs that equal the number of exposures with the pair set of wavelength in nanometers and RF Power. No check on the command, verify that the command is correct!
+Full Command: \texttt{LdCusCnf IsOneExp,NumExp,wavelegth,RFPower\ldots}
+
+Parameter: \texttt{IsOneExp} is either a 0 or a 1. A 0 represents each exposure will have a different exposure time where a 1 representats that te exposure time used for the first image will be the same for all images.
+
+Parameter: \texttt{NumExp} is the number of exposures the custom science mode will contain
+
+Parameter: \texttt{wavelength,RFPower\ldots} is a pair of information for each image in the cycle as defined by \texttt{NumExp} consisting of a wavelength in nanometers and a RF power rangeing from 0 to 1.\\
+
+Uploads values for a custom science mode. The first value is the number of exposures followed by a number of pairs that equal the number of exposures with the pair set of wavelength in nanometers and RF Power. There is no check on the command apart from the right number of inputs. User must verify that the wavelength range is in between 600 and 1000~nm and the RF power is between 0 and 1.
 
 \subsection{Command:LdCusExp}
 
-Uploads values for a custom exposure file the first value is the number of exposures time followed by a series of time in seconds. If custom exposure time is used it must match the number of exposure of images in the current science mode.  No check on the command, verify that the command is correct!
+Full Command: \texttt{LdCusExp numTimes,time\ldots}
+
+Parameter: \texttt{numTimes} is the number of exposure time to be entered.
+
+Parameter: \texttt{time\ldots} is a series of times in seconds separated by commas to match the number of exposure times.\\
+
+Uploads values for a custom exposure time lenth series. The first value is the number of exposures time followed by a series of time in seconds. If custom exposure time is used the number o exposures must match the number of times or an error is sent to the user.
 
 \subsection{Command:GetFile}
 
-Gets the requested image file from ALI-OCELOT if it exists. The name of the file has the format listed above. The filename is the full path location.
+Full Command: \texttt{GetFile filename}
+
+Parameter: \texttt{filename} is the image file to be downloaded from ALI with the full path.\\
+
+Gets the requested image file from ALI-OCELOT if it exists.
 
 \subsection{Command:EndCurrentScienceCycle}
 
-Ends the current science operation mode no matter where in the session the mode currently was.
+Full Command: \texttt{EndCurrentScienceCycle}\\
+
+Ends the current science operation mode immediately.
 
 \subsection{Command:SetExposureScaleFactor}
+
+Full Command: \texttt{SetExposureScaleFactor scaleFactor}
+
+Parameter: \texttt{scaleFactor} is a number greater zero that scales the default calibrated exposure time curve seen in \autoref{TODO}.\\
 
 Sets a scaling factor for the exposure times. Value must be greater than zero. Default is 1.0.
 
 \subsection{Command:UpdateExposureTimeCurve}
 
-Changed the values for the calculated exposure curves in seconds. Only verifies at least the required number of wavelengths have been read and second are in between 0.05 and 60 seconds. Time are in double format and separated by a comma. The Table below contains the default values.   No check on the command, verify that the command is correct!
+Full Command: \texttt{UpdateExposureTimeCurve time\ldots}
+
+Parameter: \texttt{time\ldots} is a series of 13 times separated by commas with minimum values of 0.05 seconds and a maximum of 60 seconds. The 13 values correspond to wavelengths rom 650-950~nm in 25~nm intervals.\\
+
+This function changes the default values in the calibrated exposure time curve. Default values can be seen in \autoref{TODO}.
 
 \subsection{Command:EnableCheckRfTemps}
 
-Enables the check for the RF driver so it does not get too hot or cold. Cold temp is 0 and hot is 50.
+Full Command: \texttt{EnableCheckRfTemps}\\
+
+Enables a check to erify that the RF driver is not operating outside its temperature range. At 0 degrees Celsius the RF driver is powered on and at 50 degrees it is powered off. By default the check is enabled.
 
 \subsection{Command:DisableCheckRfTemps}
 
-Enables the check for the RF driver so it does not get too hot or cold. NOT RECOMMENDED UNLESS A PROBLEM OCCURS!
+Full Command: \texttt{DisableCheckRfTemps}\\
+
+Disables the previous mentioned check for the RF driver. By default the check is enabled and it is not recommenced unless a problem with the sensors occurs.
 
 \subsection{Command:ResetHousekeeping}
 
-Resets the housekeeping module to reacquire the voltage and temperature sensors.
+Full Command: \texttt{ResetHouseKeeping}\\
+
+Resets the housekeeping module to reacquire the voltage and temperature sensors. To be used in case of problem with the housekeeping module occurs.
 
 \subsection{Command:DumpConfig}
 
-Prints the current configuration loaded into the science module.
+Full Command: \texttt{DumpConfig}\\
+
+Prints the current configuration loaded into the science module. Used for debuging purposes.
 
 \subsection{Command:SetBitsPerSecond}
 
-Changes the bitrate limit for the balloon platform. Minimum value is 32000 bits per second.
+Full Command: \texttt{SetBitsPerSecond bitsPerSecond}
+
+Parameter: \texttt{bitsPerSecond} is the value to change the download speed to during operation in bits per second.\\
+
+Changes the bitrate limit for the ALI operation program. Minimum value is 32000 bits per second ad the default is 50000 bits for second.
 
 \subsection{Command:EnableAutomation}
 
-Enables the automatic timeout in case communication is lost and never restored.
+Full Command: \texttt{EnableAutomation}\\
+
+Enables the automatic timeout process in case of a loss of communication during the launch. Enabled by default and after 90 minutes puts the system in aerosol mode.
 
 \subsection{Command:DisableAutomation}
 
-Stopped the thread that automatically starts ALI in an AERSOL\textunderscore MODE science operation. THIS NEEDS TO BE STOPED if user control is to be used as it will change the science mode after the timeout has occurred!
+Full Command: \texttt{DisablAutomation}\\
+
+Stops the process that automatically starts ALI in an aerosol mode science operation after 90 minutes. This process should be disabled if the user has control of the system at float altitude.
 
 \subsection{Command:SetAutomationTimeout}
 
-Changes the default timeout time to the time given in minutes. Default is 90, Minimum is 5 and maximum 240 minutes.
+Full Command: \texttt{SetAutomationTimeout time}
+
+Parameter: \texttt{time} is the new time in minutes to set the timeout value.\\
+
+Changes the default timeout time to the time given in minutes. Default is 90, Minimum is 5 and maximum is 240 minutes.
 
 \subsection{Command:EnableGps}
 
-Starts the GPS thread if it is not already started.
+Full Command: \texttt{EnableGps}\\
+
+Starts the GPS process if it is not already started.
 
 \subsection{Command:DisableGps}
 
-Stops the GPS thread if it is not currently running.
+Full Command: \texttt{DisableGps}\\
+
+Stops the GPS process if it is not currently running.
 
 \subsection{Command:EnablePulse}
 
-Starts the PPS thread if it is not already started.
+Full Command: \texttt{EnablePulse}\\
+
+Starts the pulse per second process if it is not already started.
 
 \subsection{Command:DisablePulse}
 
-Stops the PPS thread if it is not currently running.
+Full Command: \texttt{DisbalePuse}\\
+
+Stops the pulse per second process if it is not currently running.
 
 \section{List of Science Modes}
 \label{sec:B.2:ScienceModes}
 
 \section{List of Exposure Modes}
-\label{sec:B.3:ExposureModes}
+\label{sec:B.3:ExposureModes} 
