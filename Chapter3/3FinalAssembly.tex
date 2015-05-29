@@ -100,17 +100,22 @@ The science module operated the ALI instrument and the acquisition of data and d
 A diagnostic image was send down for every image from the mission. Each diagnostic image contained percentage of pixels that we 25\%, 50\%, 75\%, and 100\% full as well as the current state of the RF driver and CCD camera and five complete vertical columns of data. The choice to include diagnostic images was done for a two fold reason. First, having diagnostics on every image gave the users real time information if the measured data was saturated or under exposed and adjustments could be made. The second reason was there was no guarantee the when the gondola landed that ALI would survive. It could land in water and the data be lost or crash land destroying the stored data. In case of such events occurred some data was send down for every image so analysis and results could still be acquired from the ALI mission and could be used to verify the feasibility of the technology. Lastly, any extra bandwidth that was not allocated to other processes were used to transmit complete images down to the ground for complete horizontal and vertical verifications of the ALI instrument.
 
 \subsection{System Testing}
+\label{sec:3.3:SystemTesting}
 
 Upon completion of the ALI several full system and calibration tests were preformed which were done in order to ba able to calibrate the instrument for the flight and transform the counts from the measurements from into relative radiances.
 
 A test for ALI was performed to determine exposure times for the stratospheric balloon flight. On July 12, 2014 from 13:00 to 16:00 ALI was placed on the roof of the physics building pointing approximately 90\si{\degree} from sun (scattering angle) and a 60\si{\degree} zenith angle. Measurement were recorded with exposure times ranging from 0.01 seconds to two minutes and at wavelength between 600 and 1000~nm at intervals of 25~nm. Once completed, the data was analyzed on the ground to determine for each wavelength what exposure time would fill the CCD pixel well to an average 75\% full. However, the exposure times were determined from the ground at 90\si{\degree} scattering angle but the instrument will be at approximately 35~km the same scattering angle. The change in altitude will greatly change the intensity of the wavelengths by different amounts thus altering the required exposure times.
 
-In order to address this issue a radiative transfer model is needed a model has been developed at the University of Saskatchewan over the past 15 years. Using the unpolarized SASKTRAN radiative transfer model, discussed in detail in \autoref{??}, ALI was placed at the ground with a 90\si{\degree} and a zenith angle of 60\si{\degree} just like the roof trial. A second run was preformed using the parameters for the for the general parameters of the proposed balloon flight. Once both radiance profiles were determined a ratio of the balloon flight radiances to the ground radiance were taken. These ratio are the relative intensity changes for each wavelength between the two altitudes, so multiplying the determined exposure times from the roof test by the ratios will give the exposure times for the gondola geometry.
+In order to address this issue a radiative transfer model is needed a model has been developed at the University of Saskatchewan over the past 15 years. Using the unpolarized SASKTRAN-HR radiative transfer model, discussed in detail in \autoref{sec:4.1:Sasktran}, ALI was placed at the ground with a 90\si{\degree} and a zenith angle of 60\si{\degree} just like the roof trial. A second run was preformed using the parameters for the for the general parameters of the proposed balloon flight. Once both radiance profiles were determined a ratio of the balloon flight radiances to the ground radiance were taken was used as a scaling factor, $\beta$. This scaling factor can be used in combination with the ground based determined integration times , $t_{g}$  in the following
+\begin{equation}
+    t_{b} = t_{g}\beta = t_{g}\frac{I_{b}}{I_{g}}
+\end{equation}
+where $t_{b}$ is the integration time from the balloon platform, and $I_{b}$ and $I_{g}$ are the simulated radiances from the balloon and ground respectively. The simulated radiance and the scaling factor can be observed in \autoref{fig:3.3:exposureTimeDetermination}. 
 
 \begin{figure}
         \centering
         \includegraphics[width=1.0\textwidth]{./Images/3-3-ExposureTimeDetermination.pdf}
-        \caption[Flight Exposure Time Determination]{TODO: Write Description}
+        \caption[Flight Exposure Time Determination]{Simulated scaler radiances from the unpolarized SASKTRAN-HR in blue and red with the radiance on the left side and the scaling factor in black with the value on the right side.}
         \label{fig:3.3:exposureTimeDetermination}
 \end{figure}
 
