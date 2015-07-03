@@ -415,7 +415,7 @@ Same as the aerosol science mode except the exposure time has been set to two se
 \textbf{Number of Images:} 26
 
 \section{List of Exposure Modes}
-\label{sec:B.3:ExposureModes} 
+\label{sec:B.3:ExposureModes}
 
 ALI had two usable exposure modes during the campaign a calibrated exposure mode and a custom exposure mode which can be configured by the user. An automatic exposure mode was planned but due to time constraints never implemented. A brief description of the modes will follow.
 
@@ -453,19 +453,19 @@ Using the method outlined in \autoref{sec:3.3:SystemTesting} the following is a 
 
 \begin{table}
     \begin{center}
-    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|}
     \hline
-    Wavelength (nm) & 650 & 755 & 756 & 757 & 758 & 759 & 760 & 761 & 762 & 763 \\
+    Wavelength (nm) & 650 & 675 & 700 & 725 & 750 & 775 & 800 \\
     \hline
-    RF Power & 0.0 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 \\
+    Exposure Time (s) & 2.00 & 2.00 & 1.39 & 0.38 & 0.10 & 0.10 & 0.10 \\
     \hline
     \end{tabular}
     \vspace{5mm}
-    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+    \begin{tabular}{|l|c|c|c|c|c|c|}
     \hline
-    Wavelength (nm) & 764 & 765 & 766 & 767 & 768 & 769 & 770 & 771 & 772 & 772 \\
+    Wavelength (nm) & 825 & 850 & 875 & 900 & 925 & 950 \\
     \hline
-    RF Power & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 0.0 \\
+    Exposure Time (s) & 0.33 & 0.47 & 0.48 & 1.00 & 2.00 & 2.00 \\
     \hline
     \end{tabular}
     \end{center}
@@ -477,4 +477,4 @@ Using the method outlined in \autoref{sec:3.3:SystemTesting} the following is a 
 
 This mode runs lets the user upload a series of exposure times on the ALI platform to be used instead of the calibrated exposure mode.. The command is sent up via the \texttt{LdCusExp} command. Details can be located in \autoref{sec:B.1:SoftwareCommands}.
 
-\textbf{Mode:} 3
+\textbf{Mode:} 3 
