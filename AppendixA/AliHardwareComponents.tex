@@ -26,12 +26,68 @@ All lenses used in the ALI system were purchased from Newport and were coated wi
 
 \section{Polarizers}
 
+ALI needed two linear polarizer to help reduce stray light in the system. These polarizers needed a high extinction ratio over the range of the CCD sensitivities to help reduce stray light. The polarizer chosen were model number LPVIS100 from Thor Labs. The extinction ratios and transmission of the device can be seen in \autoref{fig:A.2:LinearPolarizer}.
+
+\begin{figure}
+    \includegraphics[width=1.0\textwidth]{./Images/A-2-PolarizerExtinctionRatio.png}
+    \caption[Linear Polarizer Transmission and Extinction Ratios]{The transmission and extinction ratios of the LPVIS100 used in ALI}
+    \label{fig:A.2:LinearPolarizer}
+\end{figure}
+
 \section{AOTF}
+
+The AOTF in ALI is made by Brimrose of America and is optically tuned for a range of 600-1200~nm from the following is the specifications of the device.
+
+\begin{table}
+    \begin{center}
+    \begin{tabular}{|l|c|}
+    \hline
+    Tunable Range (nm) & 600-1200 \\
+    \hline
+    RF Range (Mhz) & ?? \\
+    \hline
+    Acceptance Angle(\si{\degree}) & ?? \\
+    \hline
+    RF Power (W) & 2 \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \caption[ALI System Lenses]{Lenses contained within the ALI system.}
+    \label{tab:A.1:BrimroseAOTF}
+\end{table}
 
 \section{RF Driver}
 
+The driver for ALI is made by Gooch and Housego. It had no internal control mechanism and required additional control hardware to operate the device. In order to pick the frequency a 32-bit digital value is inputed into the device to pick a frequency as well as manage several control line to the device.
+
 \section{CCD Camera}
+
+The CCD camera was a QSI 616s with a Kodak KAP-1603ME sensor with a mechanical shutter. The spectral response of the device can be seen in \autoref{fig:3.2:QSIQuantumEfficientcy} and generical specification can be seen in \autoref{tab:A.3:QSiSpecs}
+
+\begin{table}
+    \begin{center}
+    \begin{tabular}{|l|c|}
+    \hline
+    Imager Size (mm) & 13.8 x 9.2 \\
+    \hline
+    Imager Size & 1536 x 1024 \\
+    \hline
+    Pixel Size (\si{\micro\meter}) & 9 x 9 \\
+    \hline
+    Intrinsic Read Noide (eletrons) & 15 RMS \\
+    \hline
+    Mass (kg) & 0.95 \\
+    \hline
+    Power Comsumption (W) & 24 \\
+    \hline
+    Operating Temperature (\si{\degree C}) & -20 to 30 \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \caption[QSI 616s Camera Specifications]{QSI 616s Camera Specifications}
+    \label{tab:A.3:QSISpecs}
+\end{table}
 
 \section{OCELOT Computer}
 
-
+The on board computer for the ALI instrument was the Ocelot VL-EPMs-21 computer made by VersaLogic. Its architecture is based on the Intel Atom Z5 processor and can have up to 2~GB of DDR2 memory. It has low power draw and fanless operation. It has a temperature range of -40 to 85 \si{\degree C}.
