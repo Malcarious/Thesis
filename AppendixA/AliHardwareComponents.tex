@@ -36,19 +36,21 @@ ALI needed two linear polarizer to help reduce stray light in the system. These 
 
 \section{AOTF}
 
-The AOTF in ALI is made by Brimrose of America and is optically tuned for a range of 600-1200~nm from the following is the specifications of the device.
+The AOTF in ALI is made by Brimrose of America and is optically tuned for a range of 600-1200~nm. The following from the following is the specifications of the device. The separation angle is defined the angle between the input source and the desire refracted polarization.
 
 \begin{table}
     \begin{center}
-    \begin{tabular}{|l|c|}
+    \begin{tabular}{|l|c|l|c|}
     \hline
-    Tunable Range (nm) & 600-1200 \\
+    Material & TeO$_{2}$ & Polarization & Linear vertical \\
     \hline
-    RF Range (Mhz) & ?? \\
+    RF Range (Mhz) & 75-156 & Tunable Range (nm) & 600-1200 \\
     \hline
-    Acceptance Angle(\si{\degree}) & ?? \\
+    Optical Aperture (mm) & 10x10 & Angular Aperture (\si{\degree}) & 5-6 \\
     \hline
-    RF Power (W) & 2 \\
+    Acceptance Angle(\si{\degree}) & 3 & Separation Angle (\si{\degree}) & 2.7 \\ 
+    \hline
+    RF Power (W) & 2 & Optical Damage Threshold (W) & 5 \\
     \hline
     \end{tabular}
     \end{center}
@@ -58,11 +60,15 @@ The AOTF in ALI is made by Brimrose of America and is optically tuned for a rang
 
 \section{RF Driver}
 
-The driver for ALI is made by Gooch and Housego. It had no internal control mechanism and required additional control hardware to operate the device. In order to pick the frequency a 32-bit digital value is inputed into the device to pick a frequency as well as manage several control line to the device.
+The driver for ALI is made by Gooch and Housego. It had no internal control mechanism and required additional control hardware to operate the device. In order to pick the frequency a 30-bit digital value is inputed into the device to pick a frequency as well as manage several control line to the device. The control work needed to determine a specific frequency is given by
+\begin{equation}
+    K_{10} = \frac{F2^{n+1}}{F_{clk}}
+\end{equation}
+where $K_{10}$ is the 30-bit control work in base 10 rounded to the nearest integer, $F$ is the desired RF to be outputted by the driver, $F_{clk}$ is the internal clock of the driver which is 1000.059~MHz for ALI, and $n$ is the number of bits in the control work for ALI $n=30$. The control word os converted to binary and sent to the device to get the desired RF.
 
 \section{CCD Camera}
 
-The CCD camera was a QSI 616s with a Kodak KAP-1603ME sensor with a mechanical shutter. The spectral response of the device can be seen in \autoref{fig:3.2:QSIQuantumEfficientcy} and generical specification can be seen in \autoref{tab:A.3:QSiSpecs}
+The CCD camera was a QSI 616s with a Kodak KAP-1603ME sensor with a mechanical shutter. The spectral response of the device can be seen in \autoref{fig:3.2:QSIQuantumEfficientcy} and generical specification can be seen in \autoref{tab:A.3:QSISpecs}
 
 \begin{table}
     \begin{center}
