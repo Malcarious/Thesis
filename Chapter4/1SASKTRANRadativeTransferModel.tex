@@ -3,6 +3,14 @@
 
 RT info here
 
+From paper
+
+The modeled radiances were computed with the SASKTRAN radiative transfer engine \citep{Bourassa2008a} for for High Resolution (SASKTRAN-HR) \citep{Zawada2015} measurements using the newly developed polarization module \citep{Dueck2015}. The model uses a given atmospheric state to solve the radiative transfer equation to determine the final radiance at the observer that follows
+\begin{equation}
+    I(s_{1}) = I(s_{0})e^{-\tau(s_{0}, s_{1})}+\int^{s_{1}}_{s_{0}}k(s)J(s)e^{-\tau(s, s_{1})}ds
+\end{equation}
+where $I(s_{1})$ is the radiance at the observer through a path from $s_{0}$ to $s_{1}$, the first term is the contribution of light that is attenuated along the line of sight from the sun to the observer at $s_{1}$. The second term takes the source term, $J(s)$, which is the radiance scattered into the line of sight and integrates the path along line of sight with attenuation to determine the scattering contribution to the final radiance. The extinction, given by $k(s)$, is the sum of the number density, $n(s)$, multiplied by the scattering cross section, $\sigma(s)$, over all species and $\tau$ is the optical depth. The polarized output of SASKTRAN-HR
+
 \subsection{Background}
 \subsection{Hi-Resolution Model}
 \subsection{Monte Carlo Model}
