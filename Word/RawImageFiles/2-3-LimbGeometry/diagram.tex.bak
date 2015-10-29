@@ -1,0 +1,133 @@
+\documentclass[10pt]{standalone}
+
+%\input{../../preamble}
+%\input{../pgfpreamble}
+% Parameters for Earth and Atmosphere arcs
+\newcommand{\EarthRadius}{8}
+\newcommand{\EarthTheta}{30}
+\newcommand{\AtmoRadius}{10}
+\newcommand{\AtmoTheta}{33}
+
+% The number of raytracing objects to use
+\newcommand{\NumShells}{11}
+\newcommand{\NumPlanes}{20}
+
+% For the observer
+\newcommand{\ObserverYFrac}{0.275}    % Percent in-between the earth and atmosphere
+\newcommand{\ObserverXDelta}{1}     % Distance from the right side of the atmosphere
+\newcommand{\ObserverHexSize}{0.2}  % Length of sides in observer hexagon
+
+
+
+\usepackage{tikz-3dplot}
+\usetikzlibrary{angles, quotes}
+\tdplotsetmaincoords{0}{0}
+\begin{document}
+% Styles
+\tikzstyle{internode} = [fill=black]
+\tikzstyle{planeinternode} = [fill=red!20]
+\tikzstyle{grid} = [black!40]
+
+\begin{tikzpicture}[tdplot_main_coords]
+  % Calculate the starting coordinates for the earth and atmosphere arcs
+  \pgfmathsetmacro{\xone}{\EarthRadius * sin(\EarthTheta)}
+  \pgfmathsetmacro{\yone}{\EarthRadius * cos(\EarthTheta)}
+  \pgfmathsetmacro{\xtwo}{\AtmoRadius * sin(\AtmoTheta)}
+  \pgfmathsetmacro{\ytwo}{\AtmoRadius * cos(\AtmoTheta)}
+
+  % Draw the earth and atmosphere arcs
+  \draw[fill=gray!30] (\xone, \yone) arc (90-\EarthTheta:90+\EarthTheta:\EarthRadius) -- cycle;
+  \draw[name path=arcouter] (\xtwo, \ytwo) arc (90-\AtmoTheta:90+\AtmoTheta:\AtmoRadius) node (arcend) {};
+
+  % Draw the observer
+  \pgfmathsetmacro{\ox}{\xtwo + \ObserverXDelta}
+  \pgfmathsetmacro{\oy}{\EarthRadius + (\AtmoRadius - \EarthRadius) * \ObserverYFrac}
+
+  \draw[black, fill=white] (\ox,\oy) \foreach \t in {60,0,-60,-120,-180,-240} {
+          -- ++({cos(\t)*\ObserverHexSize},{sin(\t)*\ObserverHexSize})
+      } -- cycle;
+
+  % Make the line of sight
+  \pgfmathsetmacro{\loslength}{\AtmoRadius*sin(\EarthTheta)*2.2 + \ObserverXDelta}
+  \path[name path=los] (\ox,\oy) -- ++(-\loslength,0);
+  \draw[name intersections = {of=los and arcouter}] (\ox,\oy) -- (intersection-2) coordinate (e) node[above] {$s_\text{end}$};
+
+  \node[above right] at (intersection-1) {$s=0$};
+
+  % Draw the ray tracing shells and the intersections
+  \foreach \i in {1,...,\NumShells}
+  {
+    \pgfmathsetmacro{\ShellRadius}{\EarthRadius + (\AtmoRadius - \EarthRadius) * \i / (\NumShells)}
+    \pgfmathsetmacro{\xshell}{\ShellRadius * sin(\AtmoTheta)}
+    \pgfmathsetmacro{\yshell}{\ShellRadius * cos(\AtmoTheta)}
+    \draw[name path=shell, grid] (\xshell, \yshell) arc (90-\AtmoTheta:90+\AtmoTheta:\ShellRadius) node (arcend) {};
+     and their intersections with the ray
+    \path[name intersections = {of = los and shell, total = \totinter}] \pgfextra{\xdef\totinter{\totinter}};
+
+    \ifnum\totinter=0\relax%
+    \else
+      \foreach \j in {1,...,\totinter}
+      {
+        \draw[internode] (intersection-\j) circle (0.07);
+      }
+      \ifnum\i=5
+        \node[above] (sj) at (intersection-1) {$s_j$};
+      \fi
+      \ifnum\i=4
+        \node[above] (sj1) at (intersection-1) {$s_{j+1}$};
+      \fi
+    \fi
+
+
+  }
+
+
+  \draw[name path=zenith] (0, \EarthRadius) -- (0, \AtmoRadius) coordinate (d);
+  \path[name intersections = {of = los and zenith, total = \totinter}] \pgfextra{\xdef\totinter{\totinter}};
+
+  \ifnum\totinter=0\relax%
+  \else
+    \foreach \j in {1,...,\totinter}
+    {
+      \draw[internode] (intersection-\j) circle (0.07);
+    }
+  \fi
+
+  \draw (intersection-1) coordinate (a) -- ++(-1.7,1.7,1.5) coordinate (b) -- ++ (0, -1, 1.5) coordinate(c) -- cycle;
+
+  \draw (a) -- ++(-2.2, 2.2, 2.2) node[above] {Towards Sun};
+
+  % Draw the right angle
+  \draw (c) -- ++(0,0.1) -- ++(0.1,-0.04666666) -- ++(0,-0.1);
+
+  \draw pic["$\theta$", <->, draw=black, angle eccentricity=1.2, angle radius = 20]{angle=d--a--b};
+  \draw pic["$\Theta$", <->, draw=black, angle eccentricity=1.2, angle radius = 35]{angle=b--a--e};
+  \draw pic["$\phi$", <->, draw=black, angle eccentricity=1.2, angle radius = 20]{angle=c--a--e};
+
+
+  % Make a legend
+  \node at (4,11) {\begin{tabular}{ll}$\theta$& Solar Zenith Angle \\ $\Theta$& Solar Scattering Angle \\$\phi$& Solar Azimuth Angle \end{tabular}};
+
+  % Now the planes and their intersections
+  %\foreach \i in {1,...,\NumPlanes}
+  %{
+  %  \pgfmathsetmacro{\PlaneTheta}{-\EarthTheta + (\EarthTheta*2) * (\i-1)/(\NumPlanes-1)}
+  %  \pgfmathsetmacro{\XPlaneStart}{sin(\PlaneTheta) * \AtmoRadius}
+  %  \pgfmathsetmacro{\YPlaneStart}{cos(\PlaneTheta) * \AtmoRadius}
+  %  \pgfmathsetmacro{\XPlaneEnd}{sin(\PlaneTheta) * \EarthRadius}
+  %  \pgfmathsetmacro{\YPlaneEnd}{cos(\PlaneTheta) * \EarthRadius}
+  %  \draw[name path=plane, grid] (\XPlaneStart,\YPlaneStart) -- (\XPlaneEnd, \YPlaneEnd);
+  %  \path[name intersections = {of = los and plane, total = \totinter}] \pgfextra{\xdef\totinter{\totinter}};
+
+  %  \ifnum\totinter=0\relax%
+  %  \else
+  %    \foreach \j in {1,...,\totinter}
+  %    {
+  %      \draw[planeinternode] (intersection-\j) circle (0.05);
+  %    }
+  %  \fi
+
+  }
+
+\end{tikzpicture}
+\end{document}
